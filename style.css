@@ -9,8 +9,19 @@
 
 .headPlay
 {
+  height : 20px;
+  background-color: grey;
+  transition: opacity 0.3s;
+}
+
+.headPlay:hover
+{
+  width: 20px;
   background-color: white;
-  height : 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  transition: opacity 0.3s;
 }
 
 .white

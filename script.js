@@ -13,6 +13,9 @@ table.className = 'blue';
 document.getElementById('full').appendChild(table);
 
 
+
+
+
 tr = document.createElement('tr');
   tr.onclick = play;
   tr.id = 'tra';
@@ -22,8 +25,12 @@ tr = document.createElement('tr');
     // Crée les cellules td
     td = document.createElement('td'); // cree les <td>
     td.id = "a" + " " + j;
-    td.className = 'headPlay';
     document.getElementById('tra').appendChild(td);
+
+    jeton = document.createElement('div');
+    jeton.className = "headPlay";
+    jeton.id = "j" + " " + j;
+    document.getElementById("a" + " " + j).appendChild(jeton);
   }
 
 for (var i = 0; i < 6; i++) {
@@ -241,6 +248,20 @@ function checkVictory(jetonAlignes) {
   if (jetonAlignes >= 4)
     alert("Le joueur " + joueurGagnant + " a gagné avec " + jetonAlignes);
 }
+
+/*document.onkeydown = checkKey;
+function checkKey(e) {
+
+  e = e || window.event;
+
+  if (e.keyCode == '37') 
+  {
+     alert("gauche");
+  }
+  if (e.keyCode == '39') {
+    alert("droite");
+  }
+}*/
 
 /*function checkVictory(i,j)
 {
