@@ -33,8 +33,7 @@ for (var i = 0; i < 6; i++) {
   }
 }
 
-function play() 
-{
+function play() {
   var coupJoue = false;
   var columnClicked = parseInt(parseInt(event.target.id[2]));
 
@@ -51,11 +50,10 @@ function play()
   for (var i = 0; i < 6; i++) {
     if (!coupJoue) {
       diffColonne = 5 - i;
-      if (!document.getElementById(diffColonne + " " + columnClicked).hasChildNodes()) 
-      {
+      if (!document.getElementById(diffColonne + " " + columnClicked).hasChildNodes()) {
         jeton = document.createElement('div');
-        if (player) // Pour alterner les joueurs jaunes et rouges
-        {
+        // Pour alterner les joueurs jaunes et rouges
+        if (player) {
           jeton.className = "yellow";
           player = false;
         }
