@@ -35,14 +35,12 @@ for (var i = 0; i < 6; i++) {
 
 function play() {
   var coupJoue = false;
+  var colonneCliquée = parseInt(event.target.id[2]);
 
-  var previousHorizontal = parseInt(event.target.id[2]) - 1;
-  var nextHorizontal = parseInt(event.target.id[2]) + 1;
+  var previousHorizontal = colonneCliquée - 1;
+  var nextHorizontal = colonneCliquée + 1;
 
-  var leftHorizontal = true;
-  var rightHorizontal = true;
-  var up = true;
-  var down = true;
+  var isPathing = true;
 
   var Count = 1;
 
@@ -52,7 +50,8 @@ function play() {
   for (var i = 0; i < 6; i++) {
     if (!coupJoue) {
       diffColonne = 5 - i;
-      if (!document.getElementById(diffColonne + " " + event.target.id[2]).hasChildNodes()) {
+      if (!document.getElementById(diffColonne + " " + event.target.id[2]).hasChildNodes()) 
+      {
         jeton = document.createElement('div');
         if (player) // Pour alterner les joueurs jaunes et rouges
         {
@@ -72,45 +71,39 @@ function play() {
         var nextVertical = diffColonne + 1;
         var previousVertical = diffColonne - 1;
 
-        var diagonale1 = true; // vers corner bas droit
-        var diagonale2 = true; // vers corner haut gauche
-        var diagonale3 = true; // vers corner haut droite
-        var diagonale4 = true; // vers corner bas gauche
 
-
-
-        while (rightHorizontal) {
+        while (isPathing) {
           if (nextHorizontal < 7 && document.getElementById(diffColonne + " " + nextHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(diffColonne + " " + nextHorizontal).firstChild.className == "yellow" || player && document.getElementById(diffColonne + " " + nextHorizontal).firstChild.className == "red") {
               Count += 1;
               nextHorizontal += 1
             }
             else {
-              rightHorizontal = false;
+              isPathing = false;
               checkVictory(Count);
             }
           }
           else {
-            rightHorizontal = false;
+            isPathing = false;
             checkVictory(Count);
           }
         }
 
 
-        while (leftHorizontal) {
+        while (isPathing) {
           if (previousHorizontal > -1 && document.getElementById(diffColonne + " " + previousHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(diffColonne + " " + previousHorizontal).firstChild.className == "yellow" || player && document.getElementById(diffColonne + " " + previousHorizontal).firstChild.className == "red") {
               Count += 1;
               previousHorizontal -= 1;
             }
             else {
-              leftHorizontal = false;
+              isPathing = false;
               checkVictory(Count);
               Count = 1;
             }
           }
           else {
-            leftHorizontal = false;
+            isPathing = false;
             checkVictory(Count);
             Count = 1;
           }
@@ -119,24 +112,24 @@ function play() {
         // Refresh
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = parseInt(event.target.id[2]) - 1;
-        nextHorizontal = parseInt(event.target.id[2]) + 1;
+        previousHorizontal = colonneCliquée - 1;
+        nextHorizontal = colonneCliquée + 1;
         // Refresh
 
-        while (up) {
+        while (isPathing) {
           if (nextVertical < 6 && document.getElementById(nextVertical + " " + event.target.id[2]).hasChildNodes()) {
             if (!player && document.getElementById(nextVertical + " " + event.target.id[2]).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + event.target.id[2]).firstChild.className == "red") {
               Count += 1;
               nextVertical += 1;
             }
             else {
-              up = false;
+              isPathing = false;
               checkVictory(Count);
               Count = 1;
             }
           }
           else {
-            up = false;
+            isPathing = false;
             checkVictory(Count);
             Count = 1;
           }
@@ -145,11 +138,11 @@ function play() {
         // Refresh
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = parseInt(event.target.id[2]) - 1;
-        nextHorizontal = parseInt(event.target.id[2]) + 1;
+        previousHorizontal = colonneCliquée - 1;
+        nextHorizontal = colonneCliquée + 1;
         // Refresh
 
-        while (diagonale1) {
+        while (isPathing) {
           if (nextVertical < 6 && nextHorizontal < 7 && document.getElementById(nextVertical + " " + nextHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(nextVertical + " " + nextHorizontal).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + nextHorizontal).firstChild.className == "red") {
               nextVertical += 1;
@@ -157,19 +150,19 @@ function play() {
               Count += 1;
             }
             else {
-              diagonale1 = false;
+              isPathing = false;
               checkVictory(Count);
             }
 
           }
 
           else {
-            diagonale1 = false;
+            isPathing = false;
             checkVictory(Count);
           }
         }
 
-        while (diagonale2) {
+        while (isPathing) {
           if (previousVertical > 0 && previousHorizontal > 0 && document.getElementById(previousVertical + " " + previousHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(previousVertical + " " + previousHorizontal).firstChild.className == "yellow" || player && document.getElementById(previousVertical + " " + previousHorizontal).firstChild.className == "red") {
               Count += 1;
@@ -177,13 +170,13 @@ function play() {
               previousHorizontal -= 1;
             }
             else {
-              diagonale2 = false;
+              isPathing = false;
               checkVictory(Count);
               Count = 1;
             }
           }
           else {
-            diagonale2 = false;
+            isPathing = false;
             checkVictory(Count);
             Count = 1;
           }
@@ -192,11 +185,11 @@ function play() {
         // Refresh
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = parseInt(event.target.id[2]) - 1;
-        nextHorizontal = parseInt(event.target.id[2]) + 1;
+        previousHorizontal = colonneCliquée - 1;
+        nextHorizontal = colonneCliquée + 1;
         // Refresh
 
-        while (diagonale3) {
+        while (isPathing) {
           if (previousVertical > 0 && nextHorizontal < 7 && document.getElementById(previousVertical + " " + nextHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(previousVertical + " " + nextHorizontal).firstChild.className == "yellow" || player && document.getElementById(previousVertical + " " + nextHorizontal).firstChild.className == "red") {
               previousVertical -= 1;
@@ -204,14 +197,14 @@ function play() {
               Count += 1;
             }
             else {
-              diagonale3 = false;
+              isPathing = false;
               checkVictory(Count);
             }
 
           }
 
           else {
-            diagonale3 = false;
+            isPathing = false;
             checkVictory(Count);
           }
         }
@@ -219,11 +212,11 @@ function play() {
         // Refresh
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = parseInt(event.target.id[2]) - 1;
-        nextHorizontal = parseInt(event.target.id[2]) + 1;
+        previousHorizontal = colonneCliquée - 1;
+        nextHorizontal = colonneCliquée + 1;
         // Refresh
 
-        while (diagonale4) {
+        while (isPathing) {
           if (nextVertical < 6 && previousHorizontal > 0 && document.getElementById(nextVertical + " " + previousHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(nextVertical + " " + previousHorizontal).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + previousHorizontal).firstChild.className == "red") {
               Count += 1;
@@ -231,7 +224,7 @@ function play() {
               previousHorizontal -= 1;
             }
             else {
-              diagonale4 = false;
+              isPathing = false;
               checkVictory(Count);
               Count = 1;
             }
@@ -239,7 +232,7 @@ function play() {
           }
 
           else {
-            diagonale4 = false;
+            isPathing = false;
             checkVictory(Count);
             Count = 1;
           }
