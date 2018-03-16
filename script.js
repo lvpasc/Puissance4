@@ -33,9 +33,10 @@ for (var i = 0; i < 6; i++) {
   }
 }
 
-function play() {
+function play() 
+{
   var coupJoue = false;
-  var colonneCliquée = parseInt(event.target.id[2]);
+  var colonneCliquée = parseInt(parseInt(event.target.id[2]));
 
   var previousHorizontal = colonneCliquée - 1;
   var nextHorizontal = colonneCliquée + 1;
@@ -50,7 +51,7 @@ function play() {
   for (var i = 0; i < 6; i++) {
     if (!coupJoue) {
       diffColonne = 5 - i;
-      if (!document.getElementById(diffColonne + " " + event.target.id[2]).hasChildNodes()) 
+      if (!document.getElementById(diffColonne + " " + colonneCliquée).hasChildNodes()) 
       {
         jeton = document.createElement('div');
         if (player) // Pour alterner les joueurs jaunes et rouges
@@ -63,7 +64,7 @@ function play() {
           player = true;
         }
 
-        document.getElementById(diffColonne + " " + event.target.id[2]).appendChild(jeton);
+        document.getElementById(diffColonne + " " + colonneCliquée).appendChild(jeton);
 
         coupJoue = true;
 
@@ -71,7 +72,7 @@ function play() {
         var nextVertical = diffColonne + 1;
         var previousVertical = diffColonne - 1;
 
-
+        // vers la Droite
         while (isPathing) {
           if (nextHorizontal < 7 && document.getElementById(diffColonne + " " + nextHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(diffColonne + " " + nextHorizontal).firstChild.className == "yellow" || player && document.getElementById(diffColonne + " " + nextHorizontal).firstChild.className == "red") {
@@ -80,16 +81,16 @@ function play() {
             }
             else {
               isPathing = false;
-              checkVictory(Count);
             }
           }
           else {
             isPathing = false;
-            checkVictory(Count);
           }
         }
 
+        isPathing = true;
 
+        // vers la Gauche
         while (isPathing) {
           if (previousHorizontal > -1 && document.getElementById(diffColonne + " " + previousHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(diffColonne + " " + previousHorizontal).firstChild.className == "yellow" || player && document.getElementById(diffColonne + " " + previousHorizontal).firstChild.className == "red") {
@@ -98,50 +99,50 @@ function play() {
             }
             else {
               isPathing = false;
-              checkVictory(Count);
-              Count = 1;
             }
           }
           else {
             isPathing = false;
-            checkVictory(Count);
-            Count = 1;
           }
         }
 
         // Refresh
+        isPathing = true;
+        checkVictory(Count);
+        Count = 1;
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
         previousHorizontal = colonneCliquée - 1;
         nextHorizontal = colonneCliquée + 1;
         // Refresh
 
+        // Compte verticalement a partir du dernier joué vers le bas
         while (isPathing) {
-          if (nextVertical < 6 && document.getElementById(nextVertical + " " + event.target.id[2]).hasChildNodes()) {
-            if (!player && document.getElementById(nextVertical + " " + event.target.id[2]).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + event.target.id[2]).firstChild.className == "red") {
+          if (nextVertical < 6 && document.getElementById(nextVertical + " " + colonneCliquée).hasChildNodes()) {
+            if (!player && document.getElementById(nextVertical + " " + colonneCliquée).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + colonneCliquée).firstChild.className == "red") {
               Count += 1;
               nextVertical += 1;
             }
             else {
               isPathing = false;
-              checkVictory(Count);
-              Count = 1;
             }
           }
           else {
             isPathing = false;
-            checkVictory(Count);
-            Count = 1;
           }
         }
 
         // Refresh
+        isPathing = true;
+        checkVictory(Count);
+        Count = 1;
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
         previousHorizontal = colonneCliquée - 1;
         nextHorizontal = colonneCliquée + 1;
         // Refresh
-
+        
+        // Diagonale vers corner bas droit
         while (isPathing) {
           if (nextVertical < 6 && nextHorizontal < 7 && document.getElementById(nextVertical + " " + nextHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(nextVertical + " " + nextHorizontal).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + nextHorizontal).firstChild.className == "red") {
@@ -151,17 +152,18 @@ function play() {
             }
             else {
               isPathing = false;
-              checkVictory(Count);
             }
 
           }
 
           else {
             isPathing = false;
-            checkVictory(Count);
           }
         }
 
+        isPathing = true;
+
+        // Diagonale vers corner Haut Gauche
         while (isPathing) {
           if (previousVertical > 0 && previousHorizontal > 0 && document.getElementById(previousVertical + " " + previousHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(previousVertical + " " + previousHorizontal).firstChild.className == "yellow" || player && document.getElementById(previousVertical + " " + previousHorizontal).firstChild.className == "red") {
@@ -171,24 +173,24 @@ function play() {
             }
             else {
               isPathing = false;
-              checkVictory(Count);
-              Count = 1;
             }
           }
           else {
             isPathing = false;
-            checkVictory(Count);
-            Count = 1;
           }
         }
 
         // Refresh
+        isPathing = true;
+        checkVictory(Count);
+        Count = 1;
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
         previousHorizontal = colonneCliquée - 1;
         nextHorizontal = colonneCliquée + 1;
         // Refresh
 
+        // Diagonale vers corner haut droit
         while (isPathing) {
           if (previousVertical > 0 && nextHorizontal < 7 && document.getElementById(previousVertical + " " + nextHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(previousVertical + " " + nextHorizontal).firstChild.className == "yellow" || player && document.getElementById(previousVertical + " " + nextHorizontal).firstChild.className == "red") {
@@ -198,24 +200,25 @@ function play() {
             }
             else {
               isPathing = false;
-              checkVictory(Count);
             }
 
           }
 
           else {
             isPathing = false;
-            checkVictory(Count);
           }
         }
 
         // Refresh
+        isPathing = true;
+        checkVictory(Count);
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
         previousHorizontal = colonneCliquée - 1;
         nextHorizontal = colonneCliquée + 1;
         // Refresh
 
+        // Diagonale vers corner haut gauche
         while (isPathing) {
           if (nextVertical < 6 && previousHorizontal > 0 && document.getElementById(nextVertical + " " + previousHorizontal).hasChildNodes()) {
             if (!player && document.getElementById(nextVertical + " " + previousHorizontal).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + previousHorizontal).firstChild.className == "red") {
@@ -225,20 +228,17 @@ function play() {
             }
             else {
               isPathing = false;
-              checkVictory(Count);
-              Count = 1;
             }
 
           }
 
           else {
             isPathing = false;
-            checkVictory(Count);
-            Count = 1;
           }
         }
 
-
+        checkVictory(Count);
+        Count = 1;
 
 
       }
@@ -264,17 +264,17 @@ function checkVictory(jetonAlignes) {
 /*function checkVictory(i,j)
 {
 var HozizontalCount=1;
-if(player && document.getElementById(diffColonne + " " +event.target.id[2]).firstChild.className + 1) == "yellow")
+if(player && document.getElementById(diffColonne + " " +colonneCliquée).firstChild.className + 1) == "yellow")
 alert(horizontalCount+=1);
 
-else if(!player && document.getElementById(diffColonne + " " +event.target.id[2]).firstChild.className) == "red")
+else if(!player && document.getElementById(diffColonne + " " +colonneCliquée).firstChild.className) == "red")
 }*/
 
 
 /*for(var i =0; i<6; i++)
 {
 diffColonne = 6-i;
-if(!document.getElementById(diffColonne + " " +event.target.id[2]).hasChildNodes())
+if(!document.getElementById(diffColonne + " " +colonneCliquée).hasChildNodes())
 {
 
 }
