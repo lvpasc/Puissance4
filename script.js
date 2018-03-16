@@ -36,10 +36,10 @@ for (var i = 0; i < 6; i++) {
 function play() 
 {
   var coupJoue = false;
-  var colonneCliquée = parseInt(parseInt(event.target.id[2]));
+  var columnClicked = parseInt(parseInt(event.target.id[2]));
 
-  var previousHorizontal = colonneCliquée - 1;
-  var nextHorizontal = colonneCliquée + 1;
+  var previousHorizontal = columnClicked - 1;
+  var nextHorizontal = columnClicked + 1;
 
   var isPathing = true;
 
@@ -51,7 +51,7 @@ function play()
   for (var i = 0; i < 6; i++) {
     if (!coupJoue) {
       diffColonne = 5 - i;
-      if (!document.getElementById(diffColonne + " " + colonneCliquée).hasChildNodes()) 
+      if (!document.getElementById(diffColonne + " " + columnClicked).hasChildNodes()) 
       {
         jeton = document.createElement('div');
         if (player) // Pour alterner les joueurs jaunes et rouges
@@ -64,7 +64,7 @@ function play()
           player = true;
         }
 
-        document.getElementById(diffColonne + " " + colonneCliquée).appendChild(jeton);
+        document.getElementById(diffColonne + " " + columnClicked).appendChild(jeton);
 
         coupJoue = true;
 
@@ -112,14 +112,14 @@ function play()
         Count = 1;
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = colonneCliquée - 1;
-        nextHorizontal = colonneCliquée + 1;
+        previousHorizontal = columnClicked - 1;
+        nextHorizontal = columnClicked + 1;
         // Refresh
 
         // Compte verticalement a partir du dernier joué vers le bas
         while (isPathing) {
-          if (nextVertical < 6 && document.getElementById(nextVertical + " " + colonneCliquée).hasChildNodes()) {
-            if (!player && document.getElementById(nextVertical + " " + colonneCliquée).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + colonneCliquée).firstChild.className == "red") {
+          if (nextVertical < 6 && document.getElementById(nextVertical + " " + columnClicked).hasChildNodes()) {
+            if (!player && document.getElementById(nextVertical + " " + columnClicked).firstChild.className == "yellow" || player && document.getElementById(nextVertical + " " + columnClicked).firstChild.className == "red") {
               Count += 1;
               nextVertical += 1;
             }
@@ -138,8 +138,8 @@ function play()
         Count = 1;
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = colonneCliquée - 1;
-        nextHorizontal = colonneCliquée + 1;
+        previousHorizontal = columnClicked - 1;
+        nextHorizontal = columnClicked + 1;
         // Refresh
         
         // Diagonale vers corner bas droit
@@ -186,8 +186,8 @@ function play()
         Count = 1;
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = colonneCliquée - 1;
-        nextHorizontal = colonneCliquée + 1;
+        previousHorizontal = columnClicked - 1;
+        nextHorizontal = columnClicked + 1;
         // Refresh
 
         // Diagonale vers corner haut droit
@@ -214,8 +214,8 @@ function play()
         checkVictory(Count);
         nextVertical = diffColonne + 1;
         previousVertical = diffColonne - 1;
-        previousHorizontal = colonneCliquée - 1;
-        nextHorizontal = colonneCliquée + 1;
+        previousHorizontal = columnClicked - 1;
+        nextHorizontal = columnClicked + 1;
         // Refresh
 
         // Diagonale vers corner haut gauche
@@ -264,17 +264,17 @@ function checkVictory(jetonAlignes) {
 /*function checkVictory(i,j)
 {
 var HozizontalCount=1;
-if(player && document.getElementById(diffColonne + " " +colonneCliquée).firstChild.className + 1) == "yellow")
+if(player && document.getElementById(diffColonne + " " +columnClicked).firstChild.className + 1) == "yellow")
 alert(horizontalCount+=1);
 
-else if(!player && document.getElementById(diffColonne + " " +colonneCliquée).firstChild.className) == "red")
+else if(!player && document.getElementById(diffColonne + " " +columnClicked).firstChild.className) == "red")
 }*/
 
 
 /*for(var i =0; i<6; i++)
 {
 diffColonne = 6-i;
-if(!document.getElementById(diffColonne + " " +colonneCliquée).hasChildNodes())
+if(!document.getElementById(diffColonne + " " +columnClicked).hasChildNodes())
 {
 
 }
