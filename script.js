@@ -5,10 +5,13 @@ var player = false; // true = yellow ; false = red;
 
 
 
+var ligneJeu = document.createElement('table');
+ligneJeu.id = 'ligneJeu';
+document.getElementById('full').appendChild(ligneJeu);
+
+// cree la table du puissance 4
 var table = document.createElement('table');
-
-table.id = 'puissance4'; // cree la <table>
-
+table.id = 'puissance4'; 
 table.className = 'blue';
 document.getElementById('full').appendChild(table);
 
@@ -19,12 +22,13 @@ document.getElementById('full').appendChild(table);
 tr = document.createElement('tr');
   tr.onclick = play;
   tr.id = 'tra';
-  document.getElementById('puissance4').appendChild(tr);
+  document.getElementById('ligneJeu').appendChild(tr);
   for (var j = 0; j < 7; j++) {
 
     // Crée les cellules td
     td = document.createElement('td'); // cree les <td>
     td.id = "a" + " " + j;
+    td.className = "widthh";
     document.getElementById('tra').appendChild(td);
 
     jeton = document.createElement('div');
