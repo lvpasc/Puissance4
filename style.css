@@ -1,39 +1,47 @@
 .yellow {
   background-color: yellow;
-  height: 20px;
-  width: 20px;
+  height: 27px;
+  width: 27px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
+  border-radius: 30px;
+}
+
+.centrePuissance4
+{
+  height: 300px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .headPlay
 {
   background-color: grey;
-  height: 20px;
-  width: 20px;
+  height: 27px;
+  width: 27x;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .white
 {
   background-color: white;
-  height: 20px;
-  width: 20px;
+  height: 27px;
+  width: 27px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .red {
   background-color: red;
-  height: 20px;
-  width: 20px;
+  height: 27px;
+  width: 27px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .blue {
@@ -41,6 +49,6 @@
 }
 
 .widthh {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
 }

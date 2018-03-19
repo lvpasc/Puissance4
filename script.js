@@ -260,7 +260,10 @@ function checkVictory(jetonAlignes) {
   else
     joueurGagnant = "Rouge";
   if (jetonAlignes >= 4)
+  {
     alert("Le joueur " + joueurGagnant + " a gagné avec " + jetonAlignes + " jetons alignés !");
+    window.location.reload()
+  }
 }
 
 
